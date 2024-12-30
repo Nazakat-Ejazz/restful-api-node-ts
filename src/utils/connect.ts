@@ -1,15 +1,15 @@
 import mongoose from 'mongoose';
-import config from 'config';
+import logger from './logger';
 
 function connect() {
   const dbUrl = process.env.DATABASE_URL as string;
   return mongoose
     .connect(dbUrl)
     .then(() => {
-      console.log('DB connected successfully');
+      logger.info('DB connected successfully');
     })
     .catch(() => {
-      console.log('DB connection failed');
+      logger.error('DB connection failed');
       process.exit(1);
     });
 }
